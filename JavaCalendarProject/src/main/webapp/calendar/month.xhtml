@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      
+    <h:body>
+    	
+    	<ui:composition template="../template/common/commonLayout.xhtml">
+			
+			<ui:define name="header">
+    			<h2>Month</h2>
+    		</ui:define>
+			
+			<ui:define name="content">
+    			<h2>Month</h2>
+    			<h:form>
+ 	    			<h3> From:   <h:outputText id="dayStartOut" value="#{monthsBean.monthStartDate}" /></h3>
+	    			<h3> To:   <h:outputText id="dayEndOut" value="#{monthsBean.monthEndDate}" /></h3>
+	    			
+	    			<ui:repeat value="#{weeksBean.weekDays}" var="day">
+					    #{day.toString()}<br/>
+					</ui:repeat>
+					<c:forEach items="#{weeksBean.weekDays}" var="day">
+					       #{day.toString()} 
+					 </c:forEach>
+				 	 <b/>
+    				<h:commandButton id="prev" value="Prev Month" disabled="false" action="#{monthsBean.navigateToPrevMonth}">
+	    				<f:ajax execute="prev" render="dayStartOut dayEndOut" />
+	    			</h:commandButton>
+			    	<h:commandButton id="next" value="Nex Month" disabled="false" action="#{monthsBean.navigateToNextMonth}">
+	    				<f:ajax execute="next" render="dayStartOut dayEndOut" />
+	    			</h:commandButton>
+				</h:form>
+    		</ui:define>
+    		
+    	</ui:composition>
+    	
+    </h:body>
+
+</html>

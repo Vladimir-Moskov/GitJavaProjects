@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13847152740090" configfile="/JavaCalendarProject/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="946" id="pf13847152993651" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13847152993663 pf13847152993664 pf13847152993665 pf13847152993666 pf13847152993667 pf13854099706630" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="calendar/day.xhtml" x="338" y="562" id="pf13847152993669" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf13847152993663" path="/calendar/day.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="calendar/week.xhtml" x="338" y="946" id="pf138471529936610" referenceLink="//@navigationRule.0/@navigationCase.3/@toViewId|" inlinks="pf13847152993664" path="/calendar/week.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="calendar/month.xhtml" x="338" y="1330" id="pf138471529936611" referenceLink="//@navigationRule.0/@navigationCase.4/@toViewId|" inlinks="pf13847152993665" path="/calendar/month.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="calendar/createevent.xhtml" x="338" y="1714" id="pf138471529936612" referenceLink="//@navigationRule.0/@navigationCase.5/@toViewId|" inlinks="pf13847152993666" path="/calendar/createevent.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="sheduler.xhtml" id="pf138471529936613" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13847152993667" path="/calendar/schedule.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="home.xhtml" id="pf13854099706631" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf13854099706630" path="/home.xhtml"/>
+  <links id="pf13847152993663" target="pf13847152993669" source="pf13847152993651" outcome="success" redirect="true" fromaction="#{pageController.processPageDay}"/>
+  <links id="pf13847152993664" target="pf138471529936610" source="pf13847152993651" outcome="success" redirect="true" fromaction="#{pageController.processPageWeek}"/>
+  <links id="pf13847152993665" target="pf138471529936611" source="pf13847152993651" outcome="success" redirect="true" fromaction="#{pageController.processPageMonth}"/>
+  <links id="pf13847152993666" target="pf138471529936612" source="pf13847152993651" outcome="success" redirect="true" fromaction="#{pageController.processPageNewEvent}"/>
+  <links id="pf13847152993667" target="pf138471529936613" source="pf13847152993651" outcome="success" redirect="true" fromaction="#{pageController.processSchedule}"/>
+  <links id="pf13854099706630" target="pf13854099706631" source="pf13847152993651" outcome="success" redirect="true" fromaction="#{pageController.processPageHome}"/>
+</pageflow:Pageflow>

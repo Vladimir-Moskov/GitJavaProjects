@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html">
+	
+	<h:head>
+  		<title> Calculator page</title>
+	</h:head>
+	
+    <h:body>
+    	<h3>Calculator page</h3>
+    	
+    	<h:form>
+    	    <h:inputText id="firstStringIn" value="#{calculatorBean.firstNum}"
+    	      onkeyup="this.value = this.value.replace(/[^0-9,-]/, '')">
+    	          <f:convertNumber maxFractionDigits="4" />
+			</h:inputText>
+			
+			<h:commandButton value="+" disabled="true" >
+    		</h:commandButton>
+    		
+    		<h:inputText id="secondStringIn" value="#{calculatorBean.secondNum}"
+    		   onkeyup="this.value = this.value.replace(/[^0-9,-]/, '')">
+    		   <f:convertNumber maxFractionDigits="4" />
+			</h:inputText>
+			
+			<h:commandButton value="=" disabled="false">
+    			 <f:ajax execute="firstStringIn secondStringIn" render="resultOut" />
+    		</h:commandButton>
+    		
+    		<h:inputText id="resultOut" value="#{calculatorBean.resultNum}" disabled="true">
+    			 <f:convertNumber maxFractionDigits="4" />
+    		</h:inputText>
+    		
+    		
+    	</h:form>
+
+	</h:body>
+</html>

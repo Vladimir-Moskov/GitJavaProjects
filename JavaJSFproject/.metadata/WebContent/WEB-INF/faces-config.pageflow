@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13810499884330" configfile="/JavaJSFproject/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="start.xhtml" id="pf13811731018940" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13811731018941 pf13811731018942" path="index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="StringTask.xhtml" id="pf13811731018943" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13811731018941" path="StringTask.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Calculator.xhtml" id="pf13811731018954" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf13811731018942" path="Calculator.xhtml"/>
+  <links id="pf13811731018941" target="pf13811731018943" source="pf13811731018940" outcome="success" fromaction="#{pageController.processPageStringTask}"/>
+  <links id="pf13811731018942" target="pf13811731018954" source="pf13811731018940" outcome="success" fromaction="#{pageController.processPageCalculator}"/>
+</pageflow:Pageflow>

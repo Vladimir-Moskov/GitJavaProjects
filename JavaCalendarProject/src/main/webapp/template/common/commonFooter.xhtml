@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html" >
+    <body>
+	    <ui:composition >
+			<h:form>
+				<div id="navcontainer">
+					<ul id="navlist">
+						<li>
+							 <h:commandLink value="Shedule" action="#{pageController.processSchedule}" />
+						</li>
+						
+						<li>
+							 <h:commandLink value="Home page" action="#{pageController.processPageHome}" />
+						</li>
+						
+						<li>
+							<h:commandLink value="Day" action="#{pageController.processPageDay}" />
+						</li>
+						
+						<li>
+							<h:commandLink value="Week" action="#{pageController.processPageWeek}" />
+						</li>
+						
+						<li>
+							<h:commandLink value="Month" action="#{pageController.processPageMonth}" />
+						</li>
+						
+					</ul>
+				</div>
+			</h:form>
+	    </ui:composition>
+    </body>
+</html>

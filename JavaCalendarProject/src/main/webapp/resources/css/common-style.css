@@ -1,0 +1,78 @@
+#page{
+	height: 100%;
+	width: 100%;
+	margin: 0 auto;
+}
+
+#header{
+	width: 100%;
+	height:80px;
+	border: 1px solid #000;
+	margin-bottom:10px;
+}
+
+#leftmenu{
+	width: 10%;
+	height:100%;
+	min-width: 75;
+	border: 1px solid #000;
+	float:left;
+	padding: 0 15px; 
+	margin: 0 5px;
+}
+
+#content{
+	width: 70%;
+	height:100%;
+	border: 1px solid #000;
+	float:left;
+	padding: 0 15px; 
+	margin: 0 5px;
+}
+
+#rightmenu{
+	width: 10%;
+	min-width: 75;
+	height:100%;
+	border: 1px solid #000;
+	float:left;
+	padding: 0 15px; 
+	margin: 0 5px;
+}
+
+#footer{
+	width: 100%;
+	height:80px;
+	border: 1px solid #000;
+ 	clear: both; 
+}
+
+#navlist li
+{
+display: inline;
+list-style-type: none;
+padding-right: 20px;
+}
+
+.weekTable{   
+   width: 100%
+   border-collapse:collapse;
+   border:1px solid #000000;
+}
+
+.weekTableHeader{
+   text-align:center;
+   background:none repeat scroll 0 0 #B5B5B5;
+   border-bottom:1px solid #000000;  
+   padding:2px;
+}
+
+.weekTableOddRow{
+   text-align:center;
+   background:none repeat scroll 0 0 #FFFFFFF;	
+}
+
+.weekTableEvenRow{
+   text-align:center;
+   background:none repeat scroll 0 0 #D3D3D3;
+}

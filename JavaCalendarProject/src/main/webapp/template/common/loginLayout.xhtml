@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+
+	 <body>
+	    <ui:composition>
+		    <h:form id="form">  
+		    
+		   		 <p:growl id="growl" showDetail="true" life="3000" />  
+		   		 
+				 <p:commandLink id="loginLink"  rendered="#{!userBean.isLoged}"
+					 onclick="PF('dlg').show();PF('fdlg').hide();PF('rdlg').hide();" 
+					 style="margin-right:20px;">  
+				  	<h:outputText value="Login" />  
+	    		</p:commandLink>
+	    		
+	    		<p:commandLink id="logoutLink"  rendered="#{userBean.isLoged}"
+					 onclick="#{userBean.logout}" 
+					 style="margin-right:20px;">  
+				  	<h:outputText value="Logout" />  
+	    		</p:commandLink>
+	    		
+	    		 <p:commandLink id="forgotLink"  rendered="#{!userBean.isLoged}"
+					 onclick="PF('dlg').hide();PF('fdlg').show();PF('rdlg').hide();" 
+					 style="margin-right:20px;">  
+				  	<h:outputText value="Forgot?" />  
+	    		</p:commandLink>
+	    		
+				<p:commandLink id="registerLink"  rendered="#{!userBean.isLoged}"
+					 onclick="PF('dlg').hide();PF('fdlg').hide();PF('rdlg').show();" 
+					 style="margin-right:20px;">  
+				  	<h:outputText value="Registration" />  
+	    		</p:commandLink>
+	    		
+
+				<p:dialog id="logInDialog" header="Login" widgetVar="dlg" resizable="false">  
+	  
+			        <h:panelGrid columns="2" cellpadding="5">  
+			            <h:outputLabel for="username" value="User Name:" />  
+			            <p:inputText value="#{userBean.name}"   
+			                    id="username" required="true" label="username" />  
+			              
+			            <h:outputLabel for="password" value="Password:" />  
+			            <h:inputSecret value="#{userBean.password}"   
+			                    id="password" required="true" label="password" />  
+			              
+			            <f:facet name="footer">  
+			                <p:commandButton id="loginButton" value="Login" update="growl"   
+			                    onclick="#{loginBean.login}"   /> 
+			            </f:facet>  
+			        </h:panelGrid>  
+			          
+			    </p:dialog>
+			    
+			    <p:dialog id="forgotDialog" header="Forgot Login" widgetVar="fdlg" resizable="false">  
+	  
+			        <h:panelGrid columns="2" cellpadding="5">  
+			            <h:outputLabel for="forgotUsername" value="User Name:" />  
+			            <p:inputText value="#{userBean.name}"   
+			                    id="forgotUsername" required="false" label="username" />  
+			              
+			            <h:outputLabel for="email" value="Email" />  
+			            <p:inputText value="#{userBean.email}"   
+			                    id="email" required="true" label="email"
+			                    requiredMessage="Please enter your email address."
+								validatorMessage="Invalid email format" > 
+			                     <f:validateRegex
+									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+
+			            </p:inputText>        
+			              
+			            <f:facet name="footer">  
+			               <p:commandButton id="forgotSendButton" value="Send" update="growl"   
+			                    actionListener="#{loginBean.forgot}"   />         
+			            </f:facet>  
+			        </h:panelGrid>  
+			          
+			    </p:dialog>
+			    
+			    <p:dialog id="registrateDialog" header="Registration" widgetVar="rdlg" resizable="false">  
+	  
+			        <h:panelGrid columns="2" cellpadding="5">  
+			            <h:outputLabel for="regUsername" value="User Name:" />  
+			            <p:inputText value="#{userBean.name}"   
+			                    id="regUsername" required="true" label="username" />  
+			              
+			            <h:outputLabel for="regPassword" value="Password:" />  
+			            <h:inputSecret value="#{userBean.password}"   
+			                    id="regPassword" required="true" label="password" />  
+			           
+			            <h:outputLabel for="regConfPassword" value="Password:" />  
+			            <h:inputSecret value="#{userBean.confpassword}"   
+			                    id="regConfPassword" required="true" label="confpassword" />  
+			           
+			           <h:outputLabel for="firstName" value="First Name:" />  
+			            <h:inputSecret value="#{userBean.firstName}"   
+			                    id="firstName" required="true" label="firstName" />  
+			          
+			            <h:outputLabel for="lastName" value="Last Name:" />  
+			            <h:inputSecret value="#{userBean.lastName}"   
+			                    id="lastName" required="true" label="lastName" />  
+			             
+			           <h:outputLabel for="emailReg" value="Email" />  
+			           <p:inputText value="#{userBean.email}"   
+			                    id="emailReg" required="true" label="email"
+			                    requiredMessage="Please enter your email address."
+								validatorMessage="Invalid email format" > 
+			                     <f:validateRegex
+									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+
+			            </p:inputText>        
+			                                     
+			            <f:facet name="footer">  
+			               <p:commandButton id="sendRegistrateButton" value="Registration" update="growl"   
+			                    actionListener="#{loginBean.registrate}"   />         
+			            </f:facet>  
+			        </h:panelGrid>  
+			          
+			    </p:dialog>  
+			</h:form>
+	    </ui:composition>
+    </body>
+
+</html>

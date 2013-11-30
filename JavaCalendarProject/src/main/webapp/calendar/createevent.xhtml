@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:body>
+    	
+    	<ui:composition template="../template/common/commonLayout.xhtml">
+			
+			<ui:define name="header">
+    			<h2>New Event</h2>
+    		</ui:define>
+			
+			<ui:define name="content">
+    			<h2>New Event</h2>
+    			
+    			 <h:form>
+					<h2>Name:  
+						<h:inputText id="nameInput" value="#{eventBean.name}" label="Name">
+						</h:inputText>
+					</h2>
+						
+					<h2>Start Time: 
+
+   					 <p:calendar value="#{eventBean.startTime}" 
+			   					 id="startDateInput" 
+			   					 showOn="button" 
+			   					 pattern="MM/dd/yyyy HH:mm" /> 
+						<!--<h:inputText id="startDateInput" value="#{eventBean.startTime}" 
+							size="20" required="true"
+							label="Start Time: " >
+							<f:convertDateTime pattern="d-M-yyyy" />
+				 		 </h:inputText>
+				 		 -->
+				 	</h2>	
+				 	
+				 	<h2>End Time:
+				 	 <p:calendar value="#{eventBean.endTime}" 
+			   					 id="endDateInput" 
+			   					 showOn="button" 
+			   					 pattern="MM/dd/yyyy HH:mm" /> 
+						<!--
+						<h:inputText id="endDateInput" value="#{eventBean.endTime}" 
+							size="20" required="true"
+							label="End Time: " >
+							<f:convertDateTime pattern="d-M-yyyy" />
+				 		 </h:inputText>
+				 		 -->
+					</h2>
+					
+					<h2>Description:
+					   	<h:inputTextarea value="#{eventBean.description}" cols="30" rows="10" label="Description"/>
+					</h2>	
+					<!-- 
+				 	<h2>Popup Button 
+   					 <p:calendar value="#{eventBean.endTime}" id="popupButtonCal" showOn="button" pattern="MM/dd/yyyy HH:mm" /> 
+   					</h2> 
+   					 -->
+					<h:commandButton value="Create Event" action="#{eventBean.createEvent}">
+		    		</h:commandButton>
+		    		
+		    	</h:form>
+		    	
+    		</ui:define>
+    		
+    	</ui:composition>
+    	
+    </h:body>
+
+</html>

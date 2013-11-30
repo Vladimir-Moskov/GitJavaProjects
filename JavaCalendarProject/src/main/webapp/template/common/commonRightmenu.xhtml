@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"
+      >
+    <body>
+	    <ui:composition>
+			<h:form>
+				<h3>
+					<h:commandButton value="month" disabled="false" action="#{pageController.processPageMonth}"></h:commandButton>
+				</h3>
+				
+				<h3>
+					<h:commandButton value="week" disabled="false" action="#{pageController.processPageWeek}"></h:commandButton>
+				</h3>
+				
+				<h3>
+					<h:commandButton value="day" disabled="false" action="#{pageController.processPageDay}"></h:commandButton>
+				</h3>
+				
+				<h3>
+					<h:commandButton value="new event" disabled="false" action="#{pageController.processPageNewEvent}"></h:commandButton>
+				</h3>
+			</h:form>
+	    </ui:composition>
+    </body>
+</html>

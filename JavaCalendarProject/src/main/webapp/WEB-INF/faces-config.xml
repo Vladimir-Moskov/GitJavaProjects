@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-action>#{pageController.processSchedule}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/calendar/schedule.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{pageController.processPageHome}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/home.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{pageController.processPageDay}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/calendar/day.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{pageController.processPageWeek}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/calendar/week.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{pageController.processPageMonth}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/calendar/month.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{pageController.processPageNewEvent}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/calendar/createevent.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	
+</faces-config>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13810499884330" configfile="/JavaCalendarProject/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="1330" id="pf138167703815014" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf138167703815016 pf138167703815017 pf138167703815018 pf138167740993524 pf138168453632426" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="calendar/week.xhtml" x="338" y="1330" id="pf138167703815020" referenceLink="//@navigationRule.1/@navigationCase.1/@toViewId|" inlinks="pf138167703815016" path="/calendar/week.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="calendar/month.xhtml" x="338" y="1714" id="pf138167703815021" referenceLink="//@navigationRule.0/@navigationCase.5/@toViewId|" inlinks="pf138167703815017" path="/calendar/month.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="home.xhtml" id="pf138167703815022" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf138167703815018" path="home.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="calendar/day.xhtml" id="pf138167740993525" referenceLink="//@navigationRule.1/@navigationCase.1/@toViewId|" inlinks="pf138167740993524" path="/calendar/day.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="calendar/createevent.xhtml" id="pf138168453632427" referenceLink="//@navigationRule.0/@navigationCase.5/@toViewId|" inlinks="pf138168453632426" path="/calendar/createevent.xhtml"/>
+  <links id="pf138167703815016" target="pf138167703815020" source="pf138167703815014" outcome="success" redirect="true" fromaction="#{pageController.processPageWeek}"/>
+  <links id="pf138167703815017" target="pf138167703815021" source="pf138167703815014" outcome="success" redirect="true" fromaction="#{pageController.processPageMonth}"/>
+  <links id="pf138167703815018" target="pf138167703815022" source="pf138167703815014" outcome="success" redirect="true" fromaction="#{pageController.processPageHome}"/>
+  <links id="pf138167740993524" target="pf138167740993525" source="pf138167703815014" outcome="success" redirect="true" fromaction="#{pageController.processPageDay}"/>
+  <links id="pf138168453632426" target="pf138168453632427" source="pf138167703815014" outcome="success" redirect="true" fromaction="#{pageController.processPageNewEvent}"/>
+</pageflow:Pageflow>

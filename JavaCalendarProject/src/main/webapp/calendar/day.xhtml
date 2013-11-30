@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+    <h:body>
+    	
+    	<ui:composition template="../template/common/commonLayout.xhtml">
+			
+			<ui:define name="header">
+    			<h2>Day</h2>
+    		</ui:define>
+			
+			<ui:define name="content">
+    			<h:form>
+	    			<h2>Day  <h:outputText id="dayOut" value="#{daysBean.currentDate}" /></h2>
+	
+	
+	    			<h:dataTable value="#{daysBean.dayTime}" var="time"
+	    				styleClass="weekTable"
+					   	headerClass="weekTableHeader"
+					   	rowClasses="weekTableOddRow,weekTableEvenRow">
+					    <h:column>
+					    	<f:facet name="header">
+	                      		Time
+	                      	</f:facet>   
+	                      	 #{time} 
+					    </h:column>
+					    
+					     <h:column>
+					    	<f:facet name="header">
+	                      		Events
+	                      	</f:facet>   
+	                                                                        
+					    </h:column>
+					</h:dataTable>	
+		<!--<h:dataTable border="1" value="#{columnsBean.rows}" var="row"
+		columnClasses="colstyle">
+		<f:facet name="header">
+			<h:panelGrid columns="2" border="1" style="width: 100%">
+				<h:outputLabel style="width: 100%" value="MAIN HEADER FOR COL1+2" />
+				<h:outputLabel style="width: 100%" value="MAIN HEADER FOR COL3+4" />
+			</h:panelGrid>
+		</f:facet>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="COL1 Header" />
+			</f:facet>
+			<h:outputLabel value="#{row.col1}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="COL2 Header" />
+			</f:facet>
+			<h:outputLabel value="#{row.col2}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="COL3 Header" />
+			</f:facet>
+			<h:outputLabel value="#{row.col3}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="COL4 Header" />
+			</f:facet>
+			<h:outputLabel value="#{row.col4}" />
+		</h:column>
+	</h:dataTable>
+	-->
+					<!--ui:repeat value="#{eventBean.events}" var="event">
+					    #{event.toString()}<br/>
+					</ui:repeat-->
+					
+					<div>
+		    			<h:commandButton id="prev" value="Prev Day" disabled="false" action="#{daysBean.navigateToPrevDay()}">
+		    				<f:ajax execute="prev" render="dayOut" />
+		    			</h:commandButton>
+				    	<h:commandButton id="next" value="Nex Day" disabled="false" action="#{daysBean.navigateToNextDay()}">
+		    				<f:ajax execute="next" render="dayOut" />
+		    			</h:commandButton>
+		    		</div>
+		    		
+		    	</h:form>
+    		</ui:define>
+    		
+
+    	</ui:composition>
+    	
+    </h:body>
+
+</html>
