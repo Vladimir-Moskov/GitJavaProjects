@@ -12,11 +12,11 @@ public class EmailSender {
 		Email email = new SimpleEmail();
 		email.setHostName("smtp.googlemail.com");
 		email.setSmtpPort(465);
-		email.setAuthenticator(new DefaultAuthenticator("boba.mockob@gmail.com", "vovkam44"));
+		email.setAuthenticator(new DefaultAuthenticator("bobaa.amockob@gmail.com", "avovkam44"));
 		email.setSSLOnConnect(true);
 		
 		try{
-			email.setFrom("boba.mockob@gmail.com");
+			email.setFrom("bobaa.mockob@gmail.com");
 			email.setSubject("TestMail");
 			email.setMsg("This is a test mail ... :-)");
 			email.addTo(emailTo);
