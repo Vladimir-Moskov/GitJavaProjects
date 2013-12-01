@@ -16,37 +16,7 @@ import org.primefaces.context.RequestContext;
 @SessionScoped
 public class UserBean  implements Serializable{
 	
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getConfpassword() {
-		return confpassword;
-	}
-
-	public void setConfpassword(String confpassword) {
-		this.confpassword = confpassword;
-	}
-
-	public Boolean getIsLoged() {
-		return isLoged;
-	}
-
-	public void setIsLoged(Boolean isLoged) {
-		this.isLoged = isLoged;
-	}
+	
 	private static final long serialVersionUID = 1L;
 	
 	private long id;
@@ -55,6 +25,7 @@ public class UserBean  implements Serializable{
 	private String firstName;
 	private String lastName;
 	private String confpassword;
+	private String email;
 	private Boolean isLoged = false;
 	
 	public void login(){
@@ -142,5 +113,43 @@ public class UserBean  implements Serializable{
 		this.name = name;
 	}
 
-	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getConfpassword() {
+		return confpassword;
+	}
+
+	public void setConfpassword(String confpassword) {
+		this.confpassword = confpassword;
+	}
+
+	public Boolean getIsLoged() {
+		return isLoged;
+	}
+
+	public void setIsLoged(Boolean isLoged) {
+		this.isLoged = isLoged;
+	}
 }

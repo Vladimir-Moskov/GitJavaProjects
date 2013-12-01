@@ -29,7 +29,7 @@ public class HibernateUtil {
 		ServiceRegistry serviceRegistry;
 		Configuration configuration = new Configuration();
 		//File file = new File("./src/main/resources/hibernate/hibernate.cgf.xml");
-		File file = new File("C:/Users/vavas/workspace/JavaCalendarProject/src/main/resources/hibernate/hibernate.cgf.xml");
+		File file = new File("C:/Users/vavas/workspace/GitJavaProjects/JavaCalendarProject/src/main/resources/hibernate/hibernate.cgf.xml");
 		System.out.println(file.getAbsolutePath());
 	    configuration.configure(file);
 		//configuration.configure();

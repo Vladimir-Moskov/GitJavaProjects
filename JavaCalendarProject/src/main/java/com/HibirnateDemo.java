@@ -31,7 +31,9 @@ private static SessionFactory factory;
 	}
 	
 	public static void main(String[] args) {
-		
+	
+		//EmailSender.sendMail(); 
+		/*	
       try{
          factory = configureSessionFactory();
       }catch (Throwable ex) { 
@@ -57,7 +59,7 @@ private static SessionFactory factory;
          e.printStackTrace(); 
       }finally {
          session.close(); 
-      }
+      }*/
      }
 	
 }

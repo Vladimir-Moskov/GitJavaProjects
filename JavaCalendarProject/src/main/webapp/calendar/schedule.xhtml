@@ -33,16 +33,18 @@
 				            <h:outputLabel for="title" value="Title:" />  
 				            <p:inputText id="title" value="#{scheduleController.event.title}" required="true"/>  
 				  
-				            <h:outputLabel for="from" value="From:" />  
-				            <p:inputMask id="from" value="#{scheduleController.event.startDate}" mask="99/99/9999">  
-				                <f:convertDateTime pattern="dd/MM/yyyy" />  
-				            </p:inputMask>  
-				  
-				            <h:outputLabel for="to" value="To:" />  
-				            <p:inputMask id="to" value="#{scheduleController.event.endDate}" mask="99/99/9999">  
-				                <f:convertDateTime pattern="dd/MM/yyyy" />  
-				            </p:inputMask>  
-				            
+				            <h:outputLabel for="startDateInput" value="From:" />  
+				  			 <p:calendar value="#{scheduleController.event.startDate}" 
+			   					 id="startDateInput" 
+			   					 showOn="button" 
+			   					 pattern="MM/dd/yyyy HH:mm" /> 
+			   					 
+				            <h:outputLabel for="endDateInput" value="To:" />  
+    			             <p:calendar value="#{scheduleController.event.endDate}" 
+			   					 id="endDateInput" 
+			   					 showOn="button" 
+			   					 pattern="MM/dd/yyyy HH:mm" /> 
+			   					 
 				   			<h:outputLabel for="description" value="Description:" />  
 				            <p:inputText id="description" value="#{scheduleController.event.data.description}" required="true"/> 
 				             
