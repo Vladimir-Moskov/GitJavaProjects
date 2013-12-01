@@ -4,7 +4,6 @@ import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
-import org.eclipse.jdt.internal.compiler.flow.FinallyFlowContext;
 
 public class EmailSender {
 

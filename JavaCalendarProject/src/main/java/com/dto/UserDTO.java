@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "users")
-public class User implements Serializable {
+public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id

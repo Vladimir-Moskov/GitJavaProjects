@@ -31,6 +31,24 @@ public class EventDAO {
 		return id;
 	}
 	
+	public Boolean updateEvent(EventDTO event){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = null;
+		Boolean isUpdates = true;
+	    try{
+	    	 tx = session.beginTransaction();
+	         session.update(event); 
+	         tx.commit();
+	    }catch (HibernateException e) {
+	         if (tx != null) tx.rollback();
+	         		e.printStackTrace(); 
+	         isUpdates = false;
+	      }finally {
+	         session.close(); 
+	      }
+		return isUpdates;
+	}
+	
 	public List<EventDTO> getAllEvents(){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<EventDTO> events = new ArrayList<EventDTO>();

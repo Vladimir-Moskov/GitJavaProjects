@@ -3,12 +3,16 @@ package main.java.com;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+
+import main.java.com.dao.DAOFactory;
+import main.java.com.dto.EventDTO;
 
 import org.primefaces.event.ScheduleEntryMoveEvent;
 import org.primefaces.event.ScheduleEntryResizeEvent;
@@ -18,30 +22,40 @@ import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 
+import antlr.debug.Event;
+
 @ManagedBean
 @SessionScoped
 public class ScheduleController implements Serializable {
  
-	    private ScheduleModel eventModel;  
+	    public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+		private ScheduleModel eventModel;  
      
 	    private ScheduleEvent event = new DefaultScheduleEvent();  
-	  
+	    private String description;  
+	    
 	    public ScheduleController() {  
+	       
+	        List<EventDTO> allEvents = DAOFactory.getInstance().getEventDAO().getAllEvents();
+	        
 	        eventModel = new DefaultScheduleModel();  
-	        eventModel.addEvent(new DefaultScheduleEvent("Champions League Match", previousDay8Pm(), previousDay11Pm()));  
-	        eventModel.addEvent(new DefaultScheduleEvent("Birthday Party", today1Pm(), today6Pm()));  
-	        eventModel.addEvent(new DefaultScheduleEvent("Breakfast at Tiffanys", nextDay9Am(), nextDay11Am()));  
-	        eventModel.addEvent(new DefaultScheduleEvent("Plant the new garden stuff", theDayAfter3Pm(), fourDaysLater3pm()));  
+	        DefaultScheduleEvent tempEvent;
+	        for (EventDTO event: allEvents)
+	        {
+	        	tempEvent = new DefaultScheduleEvent(event.getTitle(), event.getStartTime(),  event.getEndTime());
+	        	tempEvent.setId(String.valueOf(event.getId()));
+	        	eventModel.addEvent(tempEvent);
+	        }
+ 
 	    }  
-	      
-	    public Date getRandomDate(Date base) {  
-	        Calendar date = Calendar.getInstance();  
-	        date.setTime(base);  
-	        date.add(Calendar.DATE, ((int) (Math.random()*30)) + 1);    //set random day of month  
-	          
-	        return date.getTime();  
-	    }  
-	      
+
 	    public Date getInitialDate() {  
 	        Calendar calendar = Calendar.getInstance();  
 	        calendar.set(calendar.get(Calendar.YEAR), Calendar.FEBRUARY, calendar.get(Calendar.DATE), 0, 0, 0);  
@@ -59,77 +73,7 @@ public class ScheduleController implements Serializable {
 	  
 	        return calendar;  
 	    }  
-	      
-	    private Date previousDay8Pm() {  
-	        Calendar t = (Calendar) today().clone();  
-	        t.set(Calendar.AM_PM, Calendar.PM);  
-	        t.set(Calendar.DATE, t.get(Calendar.DATE) - 1);  
-	        t.set(Calendar.HOUR, 8);  
-	          
-	        return t.getTime();  
-	    }  
-	      
-	    private Date previousDay11Pm() {  
-	        Calendar t = (Calendar) today().clone();  
-	        t.set(Calendar.AM_PM, Calendar.PM);  
-	        t.set(Calendar.DATE, t.get(Calendar.DATE) - 1);  
-	        t.set(Calendar.HOUR, 11);  
-	          
-	        return t.getTime();  
-	    }  
-	      
-	    private Date today1Pm() {  
-	        Calendar t = (Calendar) today().clone();  
-	        t.set(Calendar.AM_PM, Calendar.PM);  
-	        t.set(Calendar.HOUR, 1);  
-	          
-	        return t.getTime();  
-	    }  
-	      
-	    private Date theDayAfter3Pm() {  
-	        Calendar t = (Calendar) today().clone();  
-	        t.set(Calendar.DATE, t.get(Calendar.DATE) + 2);       
-	        t.set(Calendar.AM_PM, Calendar.PM);  
-	        t.set(Calendar.HOUR, 3);  
-	          
-	        return t.getTime();  
-	    }  
-	  
-	    private Date today6Pm() {  
-	        Calendar t = (Calendar) today().clone();   
-	        t.set(Calendar.AM_PM, Calendar.PM);  
-	        t.set(Calendar.HOUR, 6);  
-	          
-	        return t.getTime();  
-	    }  
-	      
-	    private Date nextDay9Am() {  
-	        Calendar t = (Calendar) today().clone();  
-	        t.set(Calendar.AM_PM, Calendar.AM);  
-	        t.set(Calendar.DATE, t.get(Calendar.DATE) + 1);  
-	        t.set(Calendar.HOUR, 9);  
-	          
-	        return t.getTime();  
-	    }  
-	      
-	    private Date nextDay11Am() {  
-	        Calendar t = (Calendar) today().clone();  
-	        t.set(Calendar.AM_PM, Calendar.AM);  
-	        t.set(Calendar.DATE, t.get(Calendar.DATE) + 1);  
-	        t.set(Calendar.HOUR, 11);  
-	          
-	        return t.getTime();  
-	    }  
-	      
-	    private Date fourDaysLater3pm() {  
-	        Calendar t = (Calendar) today().clone();   
-	        t.set(Calendar.AM_PM, Calendar.PM);  
-	        t.set(Calendar.DATE, t.get(Calendar.DATE) + 4);  
-	        t.set(Calendar.HOUR, 3);  
-	          
-	        return t.getTime();  
-	    }  
-	      
+
 	    public ScheduleEvent getEvent() {  
 	        return event;  
 	    }  
@@ -139,12 +83,26 @@ public class ScheduleController implements Serializable {
 	    }  
 	      
 	    public void addEvent(ActionEvent actionEvent) {  
-	        if(event.getId() == null)  
-	            eventModel.addEvent(event);  
-	        else  
-	            eventModel.updateEvent(event);  
-	          
-	        event = new DefaultScheduleEvent();  
+	        if(event.getId() == null){
+	        	EventDTO newEvent = new EventDTO();
+	        	newEvent.setDescription(description);
+	        	newEvent.setTitle(event.getTitle());
+	        	newEvent.setStartTime(event.getStartDate());
+	        	newEvent.setEndTime(event.getEndDate());
+	        	event.setId(DAOFactory.getInstance().getEventDAO().addEvent(newEvent).toString());
+	       	 	eventModel.addEvent(event);
+	        }
+	        else{
+	        	 eventModel.updateEvent(event);  
+	        	 EventDTO updateEvent = new EventDTO();
+	        	 updateEvent.setDescription(description);
+	        	 updateEvent.setTitle(event.getTitle());
+	        	 updateEvent.setStartTime(event.getStartDate());
+	        	 updateEvent.setEndTime(event.getEndDate());
+	        	 updateEvent.setId(Long.valueOf(event.getId()));
+	        	 DAOFactory.getInstance().getEventDAO().updateEvent(updateEvent) ;
+	        }
+
 	    }  
 	      
 	    public void onEventSelect(SelectEvent selectEvent) {  
@@ -155,10 +113,19 @@ public class ScheduleController implements Serializable {
 	        event = new DefaultScheduleEvent("", (Date) selectEvent.getObject(), (Date) selectEvent.getObject());  
 	    }  
 
-	    public void onEventMove(ScheduleEntryMoveEvent event) {  
-	        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event moved", "Day delta:" + event.getDayDelta() + ", Minute delta:" + event.getMinuteDelta());  
+	    public void onEventMove(ScheduleEntryMoveEvent eventMove) {  
+	        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event moved", "Day delta:" + eventMove.getDayDelta() + ", Minute delta:" + eventMove.getMinuteDelta());  
 	          
 	        addMessage(message);  
+	        
+	         eventModel.updateEvent(event);  
+	       	 EventDTO updateEvent = new EventDTO();
+	       	 updateEvent.setDescription(description);
+	       	 updateEvent.setTitle(event.getTitle());
+	       	 updateEvent.setStartTime(event.getStartDate());
+	       	 updateEvent.setEndTime(event.getEndDate());
+	       	 updateEvent.setId(Long.valueOf(event.getId()));
+	       	 DAOFactory.getInstance().getEventDAO().updateEvent(updateEvent) ;
 	    }  
 	      
 	    public void onEventResize(ScheduleEntryResizeEvent event) {  
