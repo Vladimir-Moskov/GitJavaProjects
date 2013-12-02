@@ -16,6 +16,7 @@ public class CustomSchedulerModel extends DefaultScheduleModel {
 		CustomScheduleEvent tempEvent;
 		tempEvent = new CustomScheduleEvent(event.getTitle(), event.getStartTime(),  event.getEndTime());
     	tempEvent.setId(String.valueOf(event.getId()));
+    	tempEvent.setDescription(event.getDescription());
 		getEvents().add(tempEvent);
 	}
 }

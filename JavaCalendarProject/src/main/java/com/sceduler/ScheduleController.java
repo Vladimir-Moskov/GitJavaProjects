@@ -96,6 +96,7 @@ public class ScheduleController implements Serializable {
 	      
 	    public void onDateSelect(SelectEvent selectEvent) {  
 	        event = new CustomScheduleEvent("", (Date) selectEvent.getObject(), (Date) selectEvent.getObject());  
+	        
 	    }  
 
 	    public void onEventMove(ScheduleEntryMoveEvent eventMove) {  
