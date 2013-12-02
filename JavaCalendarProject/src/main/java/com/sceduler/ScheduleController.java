@@ -1,4 +1,4 @@
-package main.java.com;
+package main.java.com.sceduler;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -17,43 +17,28 @@ import main.java.com.dto.EventDTO;
 import org.primefaces.event.ScheduleEntryMoveEvent;
 import org.primefaces.event.ScheduleEntryResizeEvent;
 import org.primefaces.event.SelectEvent;
-import org.primefaces.model.DefaultScheduleEvent;
-import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
-
-import antlr.debug.Event;
 
 @ManagedBean
 @SessionScoped
 public class ScheduleController implements Serializable {
- 
-	    public String getDescription() {
-		return description;
-	}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-		private ScheduleModel eventModel;  
+	private CustomSchedulerModel eventModel;  
      
-	    private ScheduleEvent event = new DefaultScheduleEvent();  
-	    private String description;  
+	    private ScheduleEvent event = new CustomScheduleEvent();  
+	   
 	    
 	    public ScheduleController() {  
 	       
 	        List<EventDTO> allEvents = DAOFactory.getInstance().getEventDAO().getAllEvents();
 	        
-	        eventModel = new DefaultScheduleModel();  
-	        DefaultScheduleEvent tempEvent;
+	        eventModel = new CustomSchedulerModel();  
+	       
 	        for (EventDTO event: allEvents)
 	        {
-	        	tempEvent = new DefaultScheduleEvent(event.getTitle(), event.getStartTime(),  event.getEndTime());
-	        	tempEvent.setId(String.valueOf(event.getId()));
-	        	eventModel.addEvent(tempEvent);
+	        	eventModel.addEvent(event);
 	        }
- 
 	    }  
 
 	    public Date getInitialDate() {  
@@ -85,7 +70,7 @@ public class ScheduleController implements Serializable {
 	    public void addEvent(ActionEvent actionEvent) {  
 	        if(event.getId() == null){
 	        	EventDTO newEvent = new EventDTO();
-	        	newEvent.setDescription(description);
+	        	newEvent.setDescription(((CustomScheduleEvent)event).getDescription());
 	        	newEvent.setTitle(event.getTitle());
 	        	newEvent.setStartTime(event.getStartDate());
 	        	newEvent.setEndTime(event.getEndDate());
@@ -95,7 +80,7 @@ public class ScheduleController implements Serializable {
 	        else{
 	        	 eventModel.updateEvent(event);  
 	        	 EventDTO updateEvent = new EventDTO();
-	        	 updateEvent.setDescription(description);
+	        	 updateEvent.setDescription(((CustomScheduleEvent)event).getDescription());
 	        	 updateEvent.setTitle(event.getTitle());
 	        	 updateEvent.setStartTime(event.getStartDate());
 	        	 updateEvent.setEndTime(event.getEndDate());
@@ -106,26 +91,26 @@ public class ScheduleController implements Serializable {
 	    }  
 	      
 	    public void onEventSelect(SelectEvent selectEvent) {  
-	        event = (ScheduleEvent) selectEvent.getObject();  
+	        event = (CustomScheduleEvent) selectEvent.getObject();  
 	    }  
 	      
 	    public void onDateSelect(SelectEvent selectEvent) {  
-	        event = new DefaultScheduleEvent("", (Date) selectEvent.getObject(), (Date) selectEvent.getObject());  
+	        event = new CustomScheduleEvent("", (Date) selectEvent.getObject(), (Date) selectEvent.getObject());  
 	    }  
 
 	    public void onEventMove(ScheduleEntryMoveEvent eventMove) {  
-	        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event moved", "Day delta:" + eventMove.getDayDelta() + ", Minute delta:" + eventMove.getMinuteDelta());  
+	         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event moved", "Day delta:" + eventMove.getDayDelta() + ", Minute delta:" + eventMove.getMinuteDelta());  
 	          
-	        addMessage(message);  
-	        
+	         addMessage(message);  
+	         event = (CustomScheduleEvent) eventMove.getScheduleEvent();
 	         eventModel.updateEvent(event);  
 	       	 EventDTO updateEvent = new EventDTO();
-	       	 updateEvent.setDescription(description);
+	       	 updateEvent.setDescription(((CustomScheduleEvent)event).getDescription());
 	       	 updateEvent.setTitle(event.getTitle());
 	       	 updateEvent.setStartTime(event.getStartDate());
 	       	 updateEvent.setEndTime(event.getEndDate());
 	       	 updateEvent.setId(Long.valueOf(event.getId()));
-	       	 DAOFactory.getInstance().getEventDAO().updateEvent(updateEvent) ;
+	       	 DAOFactory.getInstance().getEventDAO().updateEvent(updateEvent);
 	    }  
 	      
 	    public void onEventResize(ScheduleEntryResizeEvent event) {  

@@ -46,7 +46,7 @@
 			   					 pattern="MM/dd/yyyy HH:mm" /> 
 			   					 
 				   			<h:outputLabel for="description" value="Description:" />  
-				            <p:inputText id="description" value="#{scheduleController.description}" required="true"/> 
+				            <p:inputText id="description" value="#{scheduleController.event.description}" required="true"/> 
 				             
 				            <h:outputLabel for="allDay" value="All Day:" />  
 				            <h:selectBooleanCheckbox id="allDay" value="#{scheduleController.event.allDay}" />  
